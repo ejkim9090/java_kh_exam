@@ -163,22 +163,15 @@ public class MusicController {
 		int result = 0; // 0 : 저장실패, 1: 저장성공
 		
 		//filePath에 list의 Music 객체들을 저장함.
-		ObjectOutputStream oos = null;
-		try {
-			 oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filePath)));
+		try (ObjectOutputStream oos 
+				= new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filePath)));
+			){
 			 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				if(oos!=null) oos.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		}
-		
 		
 		return result;
 	}
