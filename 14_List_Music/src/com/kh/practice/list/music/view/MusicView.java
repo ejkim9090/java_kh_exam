@@ -54,6 +54,7 @@ public class MusicView {
 //				System.out.println("종료");
 //				return;  // 종료 경우 메소드 종료
 			default:
+				//mainMenu();
 				// 비정상 입력 경우
 				System.out.println("!!!메뉴에 해당하는 1-9 숫자만 작성해주세요.");
 				continue;  // 다시 메뉴입력이 보이도록 함.
@@ -130,13 +131,46 @@ public class MusicView {
 		}
 	}
 	public void setMusic() {
-		// TODO
+		System.out.println("****** 특정 곡 정보 수정 ******");
+		System.out.println("수정할 곡명을 입력해주세요.");
+		String title = sc.nextLine();
+		System.out.println("변경할 곡명을 입력해주세요.");
+		String newTitle = sc.nextLine();
+		System.out.println("변경할 가수명을 입력해주세요.");
+		String newSinger = sc.nextLine();
+		
+		Music result =mc.setMusic(title, new Music(newTitle, newSinger));
+		if(result == null) {
+			System.out.println("수정할 곡이 없습니다.");
+		}else {
+			// 기존 곡명/가수
+			System.out.printf("000(%s, %s)의 값이 변경되었습니다.\n", result.getTitle(), result.getSinger());
+		}
+		// 사용자에게 수정할 곡을 입력 하여 MusicController에 setMusic으로 검색 할 수 있게
+		// 값을 넘기며 수정할 곡 명과 가수 명을 받아 setMusic으로 값을 넘긴다.
+		// 검색 결과 값이 없으면 “수정할 곡이 없습니다.”, 검색 결과 값이 있고
+		// 수정 했으면 “000(곡 명, 가수 명)의 값이 변경 되었습니다.” 콘솔 창에 출력
 	}
 	public void ascTitle() {
+		System.out.println("****** 곡 명 오름차순 정렬 ******");
+		
 		// TODO
 	}
 	public void descSinger() {
+		System.out.println("****** 가수 명 내림차순 정렬 ******");
 		// TODO
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
