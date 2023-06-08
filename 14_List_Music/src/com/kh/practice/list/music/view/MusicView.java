@@ -27,13 +27,14 @@ public class MusicView {
 //		9. 종료 // “종료” 출력 후 main()으로 리턴
 //		메뉴 번호 선택 : >> 입력 받음
 //		// 메뉴 화면 반복 실행 처리
-		int menu = 0; // 비정상입력 경우를 위한 초기값
+		int menu = -1; // 비정상입력 경우를 위한 초기값
 		do {
 			System.out.println("******* 메인 메뉴 *******");			System.out.println("1. 마지막 위치에 곡 추가");			System.out.println("2. 첫 위치에 곡 추가");			System.out.println("3. 전체 곡 목록 출력");			System.out.println("4. 특정 곡 검색");			System.out.println("5. 특정 곡 삭제");
 			System.out.println("6. 특정 곡 정보 수정");			System.out.println("7. 곡명 오름차순 정렬");			System.out.println("8. 가수명 내림차순 정렬");			System.out.println("9. 종료");
+			System.out.println("0. 파일에 저장");
 			System.out.println("메뉴 번호 선택 : >>");
 			String menuStr = sc.nextLine(); // 사용자 입력
-			menu = 0; // 비정상입력 경우를 위한 값 설정
+			menu = -1; // 비정상입력 경우를 위한 값 설정
 			try{
 				menu = Integer.parseInt(menuStr);  // 사용자 입력값을 menu에 대입
 			} catch (NumberFormatException e) {
@@ -41,6 +42,7 @@ public class MusicView {
 			}
 			switch(menu) {
 			// 정상입력 경우
+			//TODO case 0: 			saveFile();				break;
 			case 1:				addList();				break;
 			case 2:				addAtZero();				break;
 			case 3:				printAll();				break;
@@ -153,14 +155,27 @@ public class MusicView {
 	}
 	public void ascTitle() {
 		System.out.println("****** 곡 명 오름차순 정렬 ******");
-		
-		// TODO
+//		int result = mc.ascTitle();
+		int result = mc.ascTitle2();
+		if(result>0) {
+			System.out.println("정렬 성공");
+		}else {
+			System.out.println("정렬 실패");
+		}
 	}
 	public void descSinger() {
 		System.out.println("****** 가수 명 내림차순 정렬 ******");
-		// TODO
+//		int result = mc.descSinger();
+		int result = mc.descSinger2();
+		if(result>0) {
+			System.out.println("정렬 성공");
+		}else {
+			System.out.println("정렬 실패");
+		}
 	}
-
+	public void saveFile() {
+		//TODO
+	}
 }
 
 

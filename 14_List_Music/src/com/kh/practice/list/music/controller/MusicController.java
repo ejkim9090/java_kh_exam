@@ -1,8 +1,10 @@
 package com.kh.practice.list.music.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import com.kh.practice.list.music.model.compare.AscTitle;
 import com.kh.practice.list.music.model.vo.Music;
 
 public class MusicController {
@@ -87,14 +89,84 @@ public class MusicController {
 	}
 	public int ascTitle() {
 		int result = 0;
-		// TODO
+		try {
+			for (int i = 0; i < list.size() - 1; i++) {
+				for (int j = 0; j < list.size() - 1 - i; j++) {
+					if (list.get(j).getTitle().compareTo(list.get(j+1).getTitle()) > 0) { // 오름차순
+						// SWAP
+						Music tmp = list.get(j);
+						list.set(j, list.get(j+1));
+						list.set(j+1, tmp);
+					}
+				}
+			}
+			result = 1;
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
 	public int descSinger() {
+		// 착각하지 말자 list 에서 singer는 없다. list의 1개 객체에서 singer가 있다.
+		// 즉, list.get(0).getSinger();
 		int result = 0;
-		// TODO
+		try {
+			for (int i = 0; i < list.size() - 1; i++) {
+				for (int j = 0; j < list.size() - 1 - i; j++) {
+					if (list.get(j).getSinger().compareTo(list.get(j+1).getSinger())  < 0) { // 내림차순
+						// 정렬기준은 list의 Music 형태의 객체 중 singer 값으로 비교함.
+						// SWAP  // list에 있는 Music형태의 객체를 swap
+						Music tmp = list.get(j);
+						list.set(j, list.get(j+1));
+						list.set(j+1, tmp);
+					}
+				}
+			}
+			result = 1;
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
+	
+	public int ascTitle2() {
+		int result = 1;
+//		ArrayList arrlist = new ArrayList<Music>();
+//		arrlist.add(new Music("a","vb"));
+//		list.removeAll(arrlist);
+		// void java.util.Collections.sort(List<Music> list, Comparator<? super Music> c)
+		try {
+			Collections.sort(list, new AscTitle());
+		}catch (Exception e){
+			e.printStackTrace();
+			result = 0;
+		}
+		return result;
+	}
+	public int descSinger2() {
+		int result = 1;
+		try {
+			Collections.sort(list);
+		}catch (Exception e){
+			e.printStackTrace();
+			result = 0;
+		}
+		return result;
+	}
+	
+	public int saveFile(String filePath) {
+		int result = 0; // 0 : 저장실패, 1: 저장성공
+		
+		//filePath에 list의 Music 객체들을 저장함.
+		
+		
+		return result;
+	}
+	
+	
+	
+	
+	
 }
 
 
