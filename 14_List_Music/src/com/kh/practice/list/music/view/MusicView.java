@@ -32,6 +32,7 @@ public class MusicView {
 			System.out.println("******* 메인 메뉴 *******");			System.out.println("1. 마지막 위치에 곡 추가");			System.out.println("2. 첫 위치에 곡 추가");			System.out.println("3. 전체 곡 목록 출력");			System.out.println("4. 특정 곡 검색");			System.out.println("5. 특정 곡 삭제");
 			System.out.println("6. 특정 곡 정보 수정");			System.out.println("7. 곡명 오름차순 정렬");			System.out.println("8. 가수명 내림차순 정렬");			System.out.println("9. 종료");
 			System.out.println("0. 파일에 저장");
+			System.out.println("10. 파일에서 로딩");
 			System.out.println("메뉴 번호 선택 : >>");
 			String menuStr = sc.nextLine(); // 사용자 입력
 			menu = -1; // 비정상입력 경우를 위한 값 설정
@@ -42,6 +43,7 @@ public class MusicView {
 			}
 			switch(menu) {
 			// 정상입력 경우
+			case 10:		loadFile(); break;
 			case 0: 			saveFile();				break;
 			case 1:				addList();				break;
 			case 2:				addAtZero();				break;
@@ -183,6 +185,19 @@ public class MusicView {
 			System.out.println("저장 성공");
 		}else {
 			System.out.println("저장 실패");
+		}
+	}
+	
+	public void loadFile() {
+		System.out.println("****** 곡정보를 파일에서 로드 ******");
+		System.out.println("곡정보를 읽어올 파일경로를 작성해 주세요");
+		String fileName = sc.nextLine();
+		
+		int result = mc.loadFile(fileName);
+		if(result>0) {
+			System.out.println("로딩 성공");
+		}else {
+			System.out.println("로딩 실패");
 		}
 	}
 }
