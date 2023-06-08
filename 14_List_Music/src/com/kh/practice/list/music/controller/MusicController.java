@@ -1,5 +1,10 @@
 package com.kh.practice.list.music.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -158,6 +163,27 @@ public class MusicController {
 		int result = 0; // 0 : 저장실패, 1: 저장성공
 		
 		//filePath에 list의 Music 객체들을 저장함.
+		FileOutputStream fos = null;
+		ObjectOutputStream oos = null;
+		BufferedOutputStream bos = null;
+		try {
+			 fos = new FileOutputStream(filePath);
+			 oos = new ObjectOutputStream(fos);
+			 bos = new BufferedOutputStream(oos);
+			 
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(bos!=null) bos.close();
+				if(oos!=null) oos.close();
+				if(fos!=null) fos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		
 		
 		return result;
